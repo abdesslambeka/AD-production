@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD production</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Lalezar', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 5em; /* تكبير حجم النص */
+            animation: fadeInDown 2s;
+            color: #ffffff; /* لون النص */
+           
+        }
+        .social-icons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+            animation: fadeInUp 2s;
+        }
+        .container {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 2s;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery-item {
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+            width: calc(33.333% - 20px);
+            animation: zoomIn 1s;
+        }
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .gallery-item a {
+            text-decoration: none;
+            color: #333;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .modal-content {
+            margin: 5% auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation: fadeIn 1s;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            animation: fadeIn 1s;
+        }
+        .close:hover, .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+        }
+        .mute-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 3;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            animation: fadeIn 1s;
+        }
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: calc(100% - 20px);
+            }
+            .social-icons {
+                position: static;
+                margin-top: 10px;
+                justify-content: center;
+            }
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px 0;
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+        }
+        .footer .social-icons {
+            position: static;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding-top: 10px;
+        }
+        .footer .social-icons a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .footer .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="animate__animated animate__fadeInDown">مرحبًا في معرض أعمالي</h1>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/abood_designs/" target="_blank">
+                <img src="instagram.png" alt="Instagram">
+            </a>
+            <a href="https://twitter.com/yourusername" target="_blank">
+                <img src="twitterr.png" alt="Twitter">
+            </a>
+            <a href="https://www.linkedin.com/in/abdesslam-beka-b5758227a/" target="_blank">
+                <img src="linkedin.png" alt="LinkedIn">
+            </a>
+        </div>
+    </header>
+    <!-- About Me Section -->
+<section class="about-me">
+    <h2 id="aboutTitle">نبذة عني</h2>
+    <p id="aboutText">أنا مصمم جرافيك و محرر فيديو محترف بخبرة واسعة في تصميم الشعارات والهويات البصرية و الاعلانات الابداعية. أسعى دائماً لتقديم أفضل الحلول الإبداعية لعملائي.</p>
+</section>
+
+
+    
+    <div class="video-background">
+        <video autoplay muted loop id="background-video">
+            <source src="vecteezy_l.mp4" type="video/mp4">
+            المتصفح الخاص بك لا يدعم عرض الفيديو.
+        </video>
+        <button class="mute-button" onclick="toggleMute()">كتم الصوت</button>
+    </div>
+   
+    <div class="container">
+        <div class="gallery">
+            <!-- Graphic Design Portfolio -->
+            <div class="gallery-item">
+                <a href="javascript:void(0);" onclick="openModal('Brand-Identity-Presentation-Récupéré.jpg')">
+                    <img src="thambnail2.jpg" alt="عمل 1">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="javascript:void(0);" onclick="openModal('Sans titre-1.png.jpg')">
+                    <img src="thambnail.jpg" alt="عمل 2">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="javascript:void(0);" onclick="openModal('Sans titre-1.png.jpg')">
+                    <img src="thambnail.jpg" alt="عمل 2">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="javascript:void(0);" onclick="openModal('Sans titre-1.png.jpg')">
+                    <img src="thambnail.jpg" alt="عمل 2">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="javascript:void(0);" onclick="openModal('Sans titre-1.png.jpg')">
+                    <img src="thambnail.jpg" alt="عمل 2">
+                </a>
+            </div>
+            <!-- Add more gallery items as needed -->
+        </div>
+    </div>
+
+    <!-- Modal for enlarged images -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Footer with social media links -->
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://www.instagram.com/abood_designs/" target="_blank">
+                <img src="instagram.png" alt="Instagram">
+            </a>
+            <a href="https://twitter.com/yourusername" target="_blank">
+                <img src="twitterr.png" alt="Twitter">
+            </a>
+            <a href="https://www.linkedin.com/in/abdesslam-beka-b5758227a/" target="_blank">
+                <img src="linkedin.png" alt="LinkedIn">
+            </a>
+        </div>
+    </footer>
+    <script>
+        function openModal(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        function toggleMute() {
+            var video = document.getElementById('background-video');
+            var button = document.querySelector('.mute-button');
+            if (video.muted) {
+                video.muted = false;
+                button.textContent = 'كتم الصوت';
+            } else {
+                video.muted = true;
+                button.textContent = 'تشغيل الصوت';
+            }
+        }
+    </script>
+</body>
+</html>
